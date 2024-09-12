@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="CTESign.MVVM.View.AFKView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:CTESign.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             d:DataContext="{d:DesignInstance vm:SignInViewModel}"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="BackgroundBrush" Storyboard.TargetProperty="Opacity" From="0" To="0.5" Duration="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetName="ImageElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="TextBlockElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetName="DescriptionElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:1.5"/>
+        </Storyboard>
+
+        <Storyboard x:Key="FadeOutStoryboard">
+            <DoubleAnimation Storyboard.TargetName="DescriptionElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetName="TextBlockElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1" BeginTime="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="ImageElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1" BeginTime="0:0:1"/>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <UserControl.Background>
+        <ImageBrush ImageSource="/Assets/background.jpg"/>
+    </UserControl.Background>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <SolidColorBrush x:Name="BackgroundBrush" Color="Black" Opacity="0"/>
+        </Grid.Background>
+        <StackPanel Grid.RowSpan="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <hc:Gravatar x:Name="ImageElement" Opacity="0" Style="{StaticResource GravatarCircle}" Width="300" Height="300">
+                <Image Source="/Assets/logo.png" Width="400" Height="400" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </hc:Gravatar>
+            <TextBlock x:Name="TextBlockElement" Foreground="White" FontSize="35" Text="CTE LAB SIGN-IN" TextAlignment="Center" Opacity="0" FontWeight="Bold" Margin="0 20 0 0"/>
+            <TextBlock x:Name="DescriptionElement" Foreground="LightGray" FontSize="30" Text="Press any key to continue" TextAlignment="Center" FontWeight="Light" Opacity="0"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Margin="5" Foreground="WhiteSmoke"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="DISCLAIMER: ALL INFORMATION WILL BE STORED THROUGH THE LOS ANGELES CITY COLLEGE DATABASE. WE DO NOT STORE INFORMATION WITH ANY THIRD-PARTY APPLICATIONS NOR STORE INFORMATION LOCALLY."/>
+
+    </Grid>
+</UserControl>

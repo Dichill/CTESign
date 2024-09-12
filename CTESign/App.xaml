@@ -1,0 +1,29 @@
+﻿<Application x:Class="CTESign.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CTESign"
+             xmlns:vm="clr-namespace:CTESign.MVVM.ViewModel"
+             xmlns:view="clr-namespace:CTESign.MVVM.View"
+             xmlns:hc="https://handyorg.github.io/handycontrol">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type vm:AFKViewModel}">
+                <view:AFKView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type vm:SignInViewModel}">
+                <view:SignInView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type vm:SubmittedViewModel}">
+                <view:SubmittedView/>
+            </DataTemplate>
+
+            <ResourceDictionary.MergedDictionaries>
+                <hc:ThemeResources/>
+                <hc:Theme/>
+                <!-- Other merged dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
