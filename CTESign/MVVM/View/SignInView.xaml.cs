@@ -24,5 +24,10 @@ namespace CTESign.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void ComboBox_PreviewMouseWheel(object sender, RequestBringIntoViewEventArgs e)
+        {
+            e.Handled = !((HandyControl.Controls.ComboBox)sender).IsDropDownOpen;
+        }
     }
 }

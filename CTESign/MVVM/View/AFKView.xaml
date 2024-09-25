@@ -50,7 +50,15 @@
             <TextBlock x:Name="DescriptionElement" Foreground="LightGray" FontSize="30" Text="Press any key to continue" TextAlignment="Center" FontWeight="Light" Opacity="0"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="1" Margin="5" Foreground="WhiteSmoke"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="DISCLAIMER: ALL INFORMATION WILL BE STORED THROUGH THE LOS ANGELES CITY COLLEGE DATABASE. WE DO NOT STORE INFORMATION WITH ANY THIRD-PARTY APPLICATIONS NOR STORE INFORMATION LOCALLY."/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/Assets/logo.png" Width="50" x:Name="adminBttn" MouseLeftButtonDown="adminBttn_MouseLeftButtonDown"/>
+            <TextBlock Grid.Column="1" Margin="5" Foreground="WhiteSmoke"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="DISCLAIMER: ALL INFORMATION WILL BE STORED THROUGH THE LOS ANGELES CITY COLLEGE DATABASE. WE DO NOT STORE INFORMATION WITH ANY THIRD-PARTY APPLICATIONS NOR STORE INFORMATION LOCALLY."/>
+        </Grid>
+
 
     </Grid>
 </UserControl>

@@ -70,7 +70,7 @@ namespace CTESign.MVVM.ViewModel
         public string? SelectedPurpose
         {
             get { return _selectedPurpose; }
-            set { _selectedPurpose = value; OnPropertyChanged(); if (SelectedPurpose == "Other") IsOther = true; }
+            set { _selectedPurpose = value; OnPropertyChanged(); if (SelectedPurpose == "Other") IsOther = true; else IsOther = false; }
         }
 
         private bool _needJob;
@@ -89,6 +89,15 @@ namespace CTESign.MVVM.ViewModel
             get { return _isOther; }
             set { _isOther = value; OnPropertyChanged(); }
         }
+
+        private string _otherTxt;
+
+        public string OtherTxt
+        {
+            get { return _otherTxt; }
+            set { _otherTxt = value; OnPropertyChanged(); }
+        }
+
 
 
         #region Validation
@@ -148,6 +157,8 @@ namespace CTESign.MVVM.ViewModel
 
 			SubmitCommand = new RelayCommand(async o =>
 			{
+                if (!CanSubmit()) return;
+
                 string answers = """
                 [
                     {
@@ -171,8 +182,13 @@ namespace CTESign.MVVM.ViewModel
 
                 answers = answers.Replace("{FIRST_NAME}", FirstName)
                                  .Replace("{LAST_NAME}", LastName)
-                                 .Replace("{STUDENT_NUMBER}", StudentNumber)
-                                 .Replace("{PURPOSE}", SelectedPurpose);
+                                 .Replace("{STUDENT_NUMBER}", StudentNumber);
+
+                if (IsOther)
+                    answers = answers.Replace("{PURPOSE}", OtherTxt);
+                else
+                   answers = answers.Replace("{PURPOSE}", SelectedPurpose);
+
 
                 //if (NeedJob)
                 //{
@@ -223,6 +239,8 @@ namespace CTESign.MVVM.ViewModel
                     Major = "";
                     SelectedPurpose = null;
                     NeedJob = true;
+                    IsOther = false;
+                    OtherTxt = "";
 
                     Navigation.NavigateTo<SubmittedViewModel>();
                 }

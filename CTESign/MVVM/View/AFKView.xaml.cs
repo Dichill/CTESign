@@ -51,5 +51,12 @@ namespace CTESign.MVVM.View
         {
             viewModel.GoToSignIn();
         }
+
+        private void adminBttn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Disable key presses
+            ((Control)sender).KeyDown -= HandleKeyPress;
+
+        }
     }
 }

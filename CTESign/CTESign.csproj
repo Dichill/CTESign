@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Assets\background.jpg" />
     <None Remove="Assets\cte-logo-transparent.png" />
+    <None Remove="Assets\CTEBG.png" />
     <None Remove="Assets\logo.png" />
   </ItemGroup>
 
@@ -23,6 +24,7 @@
   <ItemGroup>
     <Resource Include="Assets\background.jpg" />
     <Resource Include="Assets\cte-logo-transparent.png" />
+    <Resource Include="Assets\CTEBG.png" />
     <Resource Include="Assets\logo.png" />
   </ItemGroup>
 
