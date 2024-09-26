@@ -1,4 +1,5 @@
-﻿using CTESign.MVVM.ViewModel;
+﻿using CTESign.MVVM.View.Admin;
+using CTESign.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,8 +56,10 @@ namespace CTESign.MVVM.View
         private void adminBttn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // Disable key presses
-            ((Control)sender).KeyDown -= HandleKeyPress;
-
+            Window.GetWindow(this).KeyDown -= HandleKeyPress;
+            AdminWindow adminWindow = new AdminWindow();
+            adminWindow.Show();
+            Window.GetWindow(this).Close();
         }
     }
 }
