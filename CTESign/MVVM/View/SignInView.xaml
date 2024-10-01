@@ -133,7 +133,7 @@
                                 <hc:TextBox.Text>
                                     <Binding Path="StudentNumber" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
-                                            <hc:RegexRule Pattern="\d+" ErrorContent="Student ID must be numeric."/>
+                                            <hc:RegexRule Pattern="^\d{9}$" ErrorContent="Student ID must be numeric and exactly 9 digits."/>
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </hc:TextBox.Text>
@@ -156,6 +156,22 @@
                                     <Binding Path="OtherTxt" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <hc:NoBlankTextRule ErrorContent="Other must not be empty."/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </hc:TextBox.Text>
+                            </hc:TextBox>
+
+                            <hc:TextBox hc:InfoElement.Placeholder="What job are you looking for?"
+                                hc:InfoElement.Title="Job"
+                                hc:InfoElement.Necessary="True"
+                                FontSize="20"
+                                Padding="5"
+                                Margin="15 20 0 0"
+                                Visibility="{Binding IsJobSearch, Converter={StaticResource BoolToVisConverter}}">
+                                <hc:TextBox.Text>
+                                    <Binding Path="JobSearchTxt" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <hc:NoBlankTextRule ErrorContent="Job search must not be empty."/>
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </hc:TextBox.Text>
