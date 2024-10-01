@@ -172,6 +172,8 @@ namespace CTESign.MVVM.ViewModel
             } 
         }
 
+
+        bool hasSubmitted = false;
         public SignInViewModel(INavigationService navService) {
             Navigation = navService;
 
@@ -180,6 +182,10 @@ namespace CTESign.MVVM.ViewModel
 			SubmitCommand = new RelayCommand(async o =>
 			{
                 if (!CanSubmit()) return;
+
+                // prevents users from submitting twice when double clicking the button.
+                if (hasSubmitted) return;
+                hasSubmitted = true;
 
                 string answers = """
                 [
@@ -207,7 +213,7 @@ namespace CTESign.MVVM.ViewModel
                                  .Replace("{STUDENT_NUMBER}", StudentNumber);
 
                 if (IsOther)
-                    answers = answers.Replace("{PURPOSE}", OtherTxt);
+                    answers = answers.Replace("{PURPOSE}", "Other - " + OtherTxt);
                 else if (IsJobSearch)
                 {
                     answers = answers.Replace("{PURPOSE}", "Job Search - " + JobSearchTxt);
@@ -253,9 +259,12 @@ namespace CTESign.MVVM.ViewModel
                     StudentNumber = "";
                     EmailAddress = "";
                     Major = "";
+                    
                     SelectedPurpose = null;
+                    
                     IsOther = false;
                     IsJobSearch = false;
+
                     JobSearchTxt = "";
                     OtherTxt = "";
 

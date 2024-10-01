@@ -1,0 +1,3 @@
+### HTTP REQUEST FOR DASH SOFTWARE
+* Self Destruct - in case of an emergency, if someone were to steal the laptop that houses the students information, when this is enabled, the software will automatically delete .db file that has all of the students information. Information stored in the database are encrypted and decrypted on the fly, but for safety measure, this is the final procedure.
+* Version - This is where the latest version of Dash will be placed. If the version in the Github Repo is greater than the software, it will automatically update on launch.
