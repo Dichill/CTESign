@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows;
 using CTESign.Core;
+using CTESign.MVVM.View.Admin;
 using CTESign.MVVM.ViewModel;
 using CTESign.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,9 +26,23 @@ namespace CTESign
 
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<AFKViewModel>();
+            
+            // Sign In Services
             services.AddSingleton<SignInViewModel>();
+            services.AddSingleton<MesaSignInViewModel>();
+
             services.AddSingleton<SubmittedViewModel>();
             services.AddSingleton<GlobalViewModel>();
+
+            // Admin Services
+            services.AddSingleton<AdminWindow>(provider => new AdminWindow
+            {
+                DataContext = provider.GetRequiredService<AdminViewModel>()
+            });
+
+            services.AddSingleton<AdminViewModel>();
+            services.AddSingleton<AdminDashboardViewModel>();
+
             services.AddSingleton<INavigationService, NavigationService>();
             InstantiateGlobal();
 
@@ -48,5 +63,4 @@ namespace CTESign
             mainWindow.Show();
         }
     }
-
 }

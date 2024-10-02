@@ -21,6 +21,9 @@ namespace CTESign.MVVM.ViewModel
             Navigation = navigationService;
         }
 
-        public void GoToSignIn() => Navigation.NavigateTo<SignInViewModel>();
+        public void GoToSignIn()
+        {
+            Navigation.NavigateTo<SignInViewModel>();
+        }
     }
 }

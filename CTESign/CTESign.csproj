@@ -15,6 +15,7 @@
     <None Remove="Assets\cte-logo-transparent.png" />
     <None Remove="Assets\CTEBG.png" />
     <None Remove="Assets\logo.png" />
+    <None Remove="Assets\mesa.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,13 @@
     <Resource Include="Assets\cte-logo-transparent.png" />
     <Resource Include="Assets\CTEBG.png" />
     <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\mesa.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MVVM\View\MesaSignInView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

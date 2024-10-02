@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CTESign"
              xmlns:vm="clr-namespace:CTESign.MVVM.ViewModel"
+             xmlns:advm="clr-namespace:CTESign.MVVM.ViewModel"
              xmlns:view="clr-namespace:CTESign.MVVM.View"
+             xmlns:adview="clr-namespace:CTESign.MVVM.View.Admin"
              xmlns:hc="https://handyorg.github.io/handycontrol">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- Dash Routes -->
             <DataTemplate DataType="{x:Type vm:AFKViewModel}">
                 <view:AFKView/>
             </DataTemplate>
@@ -17,6 +20,11 @@
             
             <DataTemplate DataType="{x:Type vm:SubmittedViewModel}">
                 <view:SubmittedView/>
+            </DataTemplate>
+            
+            <!-- Admin Routes -->
+            <DataTemplate DataType="{x:Type vm:AdminDashboardViewModel}">
+                <adview:AdminDashboardView/>
             </DataTemplate>
 
             <ResourceDictionary.MergedDictionaries>
