@@ -27,12 +27,19 @@ namespace CTESign
             services.AddSingleton<AFKViewModel>();
             services.AddSingleton<SignInViewModel>();
             services.AddSingleton<SubmittedViewModel>();
+            services.AddSingleton<GlobalViewModel>();
             services.AddSingleton<INavigationService, NavigationService>();
+            InstantiateGlobal();
 
             services.AddSingleton<Func<Type, ViewModel>>(serviceProvider =>
                 viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
 
             _serviceProvider = services.BuildServiceProvider();
+        }
+
+        void InstantiateGlobal()
+        {
+
         }
 
         protected override void OnStartup(StartupEventArgs e)

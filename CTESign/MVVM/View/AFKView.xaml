@@ -11,19 +11,19 @@
              Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Storyboard x:Key="FadeInStoryboard">
-            <DoubleAnimation Storyboard.TargetName="BackgroundBrush" Storyboard.TargetProperty="Opacity" From="0" To="0.5" Duration="0:0:1"/>
-            <DoubleAnimation Storyboard.TargetName="ImageElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:0.5"/>
-            <DoubleAnimation Storyboard.TargetName="TextBlockElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:1"/>
-            <DoubleAnimation Storyboard.TargetName="DescriptionElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:1.5"/>
+            <DoubleAnimation Storyboard.TargetName="BackgroundBrush" Storyboard.TargetProperty="Opacity" From="0" To="0.5" Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="ImageElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" BeginTime="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="TextBlockElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" BeginTime="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetName="DescriptionElement" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" BeginTime="0:0:1.5"/>
         </Storyboard>
 
         <Storyboard x:Key="FadeOutStoryboard">
-            <DoubleAnimation Storyboard.TargetName="DescriptionElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1"/>
-            <DoubleAnimation Storyboard.TargetName="TextBlockElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1" BeginTime="0:0:0.5"/>
-            <DoubleAnimation Storyboard.TargetName="ImageElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1" BeginTime="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetName="DescriptionElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="TextBlockElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetName="ImageElement" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:0.5"/>
         </Storyboard>
     </UserControl.Resources>
-
+    
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>

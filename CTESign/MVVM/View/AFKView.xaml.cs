@@ -41,6 +41,7 @@ namespace CTESign.MVVM.View
         private void HandleKeyPress(object sender, KeyEventArgs e)
         {
             Storyboard myAnimation = (Storyboard)FindResource("FadeOutStoryboard");
+
             
             myAnimation.Completed += AnimCompleted;
             myAnimation.Begin();

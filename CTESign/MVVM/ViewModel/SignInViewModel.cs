@@ -70,16 +70,24 @@ namespace CTESign.MVVM.ViewModel
         public string? SelectedPurpose
         {
             get { return _selectedPurpose; }
-            set { _selectedPurpose = value; OnPropertyChanged(); if (SelectedPurpose == "Other") IsOther = true; else IsOther = false; }
+            set { _selectedPurpose = value; OnPropertyChanged(); 
+                switch (SelectedPurpose)
+                {
+                    case "Other":
+                        IsOther = true;
+                        IsJobSearch = false;
+                        break;
+                    case "Job Search":
+                        IsJobSearch = true;
+                        IsOther = false;
+                        break;
+                    default:
+                        IsOther = false;
+                        IsJobSearch = false;
+                        break;
+                }
+            }
         }
-
-        private bool _needJob;
-
-		public bool NeedJob
-		{
-			get { return _needJob; }
-			set { _needJob = value; OnPropertyChanged(); CommandManager.InvalidateRequerySuggested(); }
-		}
         #endregion
 
         private bool _isOther;
@@ -98,13 +106,28 @@ namespace CTESign.MVVM.ViewModel
             set { _otherTxt = value; OnPropertyChanged(); }
         }
 
+        private bool _isJobSearch;
+
+        public bool IsJobSearch
+        {
+            get { return _isJobSearch; }
+            set { _isJobSearch = value; OnPropertyChanged(); }
+        }
+
+        private string _jobSearchTxt;
+
+        public string JobSearchTxt
+        {
+            get { return _jobSearchTxt; }
+            set { _jobSearchTxt = value; }
+        }
 
 
         #region Validation
         private bool HasErrors()
         {
             // Check for errors in properties (like FirstName, LastName, etc.)
-            if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || !IsStudentNumberValid() || string.IsNullOrWhiteSpace(SelectedPurpose))
+            if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || !IsStudentNumberValid() || string.IsNullOrWhiteSpace(SelectedPurpose) || StudentNumber.Length != 9 && StudentNumber.All(char.IsDigit))
             {
                 return true;
             }
@@ -149,15 +172,20 @@ namespace CTESign.MVVM.ViewModel
             } 
         }
 
+
+        bool hasSubmitted = false;
         public SignInViewModel(INavigationService navService) {
             Navigation = navService;
 
-			NeedJob = true;
             IsOther = false;
 
 			SubmitCommand = new RelayCommand(async o =>
 			{
                 if (!CanSubmit()) return;
+
+                // prevents users from submitting twice when double clicking the button.
+                if (hasSubmitted) return;
+                hasSubmitted = true;
 
                 string answers = """
                 [
@@ -185,19 +213,13 @@ namespace CTESign.MVVM.ViewModel
                                  .Replace("{STUDENT_NUMBER}", StudentNumber);
 
                 if (IsOther)
-                    answers = answers.Replace("{PURPOSE}", OtherTxt);
+                    answers = answers.Replace("{PURPOSE}", "Other - " + OtherTxt);
+                else if (IsJobSearch)
+                {
+                    answers = answers.Replace("{PURPOSE}", "Job Search - " + JobSearchTxt);
+                }
                 else
                    answers = answers.Replace("{PURPOSE}", SelectedPurpose);
-
-
-                //if (NeedJob)
-                //{
-                //    answers = answers.Replace("{NEED_JOB}", "Yes");
-                //}
-                //else
-                //{
-                //    answers = answers.Replace("{NEED_JOB}", "No");
-                //}
 
                 await SubmitForm(answers);
 
@@ -237,9 +259,13 @@ namespace CTESign.MVVM.ViewModel
                     StudentNumber = "";
                     EmailAddress = "";
                     Major = "";
+                    
                     SelectedPurpose = null;
-                    NeedJob = true;
+                    
                     IsOther = false;
+                    IsJobSearch = false;
+
+                    JobSearchTxt = "";
                     OtherTxt = "";
 
                     Navigation.NavigateTo<SubmittedViewModel>();
@@ -249,6 +275,7 @@ namespace CTESign.MVVM.ViewModel
             {
                 // Handle any exceptions that occur during the request or response processing
                 // Log the exception or display an error message to the user
+                MessageBox.Show("An error occured, please call any CTE workers regarding the issue before doing anything. ERROR MESSAGE: " + ex.Message, "Dash Software", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
