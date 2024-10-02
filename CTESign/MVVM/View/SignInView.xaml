@@ -134,6 +134,7 @@
                                     <Binding Path="StudentNumber" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <hc:RegexRule Pattern="\d+" ErrorContent="Student ID must be numeric."/>
+                                            <hc:RegexRule Pattern="^\d{9}$" ErrorContent="Student ID must contain exactly 9 digits." />
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </hc:TextBox.Text>
