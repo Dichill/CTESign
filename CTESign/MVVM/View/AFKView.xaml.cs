@@ -58,9 +58,7 @@ namespace CTESign.MVVM.View
         {
             // Disable key presses
             Window.GetWindow(this).KeyDown -= HandleKeyPress;
-            AdminWindow adminWindow = new AdminWindow();
-            adminWindow.Show();
-            Window.GetWindow(this).Close();
+            ((App)Application.Current).ShowAdminWindow();
         }
     }
 }

@@ -4,9 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CTESign.MVVM.View.Admin"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:vm="clr-namespace:CTESign.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="Dash Admin" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+        Title="Dash Admin" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <ContentControl Content="{Binding Navigation.CurrentView}"/>
+        <StackPanel Grid.Row="1" Margin="5">
+            <TextBlock Foreground="DimGray" FontSize="10" FontStyle="Italic" FontWeight="Light" Text="Developed by Dichill Tomarong For Career Center and MESA. DO NOT distribute unless permitted." HorizontalAlignment="Right"/>
+        </StackPanel>
     </Grid>
 </Window>

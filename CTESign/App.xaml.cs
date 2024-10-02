@@ -41,6 +41,7 @@ namespace CTESign
             });
 
             services.AddSingleton<AdminViewModel>();
+            services.AddSingleton<AdminAuthViewModel>();
             services.AddSingleton<AdminDashboardViewModel>();
 
             services.AddSingleton<INavigationService, NavigationService>();
@@ -61,6 +62,12 @@ namespace CTESign
         {
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
+        }
+        public void ShowAdminWindow()
+        {
+            var adminWindow = _serviceProvider.GetRequiredService<AdminWindow>();
+            adminWindow.Show();
+            MainWindow.Close();
         }
     }
 }

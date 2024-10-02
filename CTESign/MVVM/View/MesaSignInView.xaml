@@ -245,7 +245,7 @@
                             </hc:TextBox>
 
                             <hc:TextBox hc:InfoElement.Placeholder="What workshop are you attending?"
-                                        hc:InfoElement.Title="Job"
+                                        hc:InfoElement.Title="Workshop"
                                         hc:InfoElement.Necessary="True"
                                         FontSize="20"
                                         Padding="5"
