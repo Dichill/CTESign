@@ -5,12 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CTESign"
         xmlns:vm="clr-namespace:CTESign.MVVM.ViewModel"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:converters="clr-namespace:CTESign.Converters"
         mc:Ignorable="d"
         Title="CTE SIGN IN" Height="450" Width="800"
         Loaded="Window_Loaded"
         WindowStyle="None"
         d:DataContext="{d:DesignInstance vm:MainViewModel}">
+    <Window.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="CustomBooleanToVisibilityConverter" 
+        True="Collapsed" 
+        False="Visible"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
     <Grid>
-        <ContentControl Content="{Binding Navigation.CurrentView}"/>
+        <Grid Visibility="{Binding HasUpdate, Converter={StaticResource BooleanToVisibility}}">
+            <Border>
+                <Border.Background>
+                    <ImageBrush ImageSource="/Assets/background.jpg"/>
+                </Border.Background>
+            </Border>
+            <Border>
+                <Border.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.3"/>
+                </Border.Background>
+            </Border>
+            <Border Width="350" Height="210" BorderThickness="0" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Border.Background>
+                    <SolidColorBrush Color="white"/>
+                </Border.Background>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="Dash Software Notification" FontWeight="SemiBold" FontSize="16" Padding="10"/>
+                        <Border BorderBrush="Black" BorderThickness="0.2"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20">
+                        <TextBlock Text="An Update has been found." FontWeight="Bold" Margin="0 0 0 5"/>
+                        <TextBlock Text="Please update the software to ensure that everything"/>
+                        <TextBlock Text="will be operational. Patch notes are on Github."/>
+                        <TextBlock Text="- Dichill Tomarong" FontWeight="Light" Margin="0 5 0 0"/>
+                        <StackPanel Margin="0 20 0 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Command="{Binding UpdateSoftwareCommand}" Style="{StaticResource ButtonSuccess}" Cursor="Hand" Content="Update" Margin="10,0,0,0" Padding="20 0 20 0" hc:BorderElement.CornerRadius="8"/>
+                            <Button Command="{Binding SkipUpdateCommand}" Style="{StaticResource ButtonDanger}" Cursor="Hand" Content="Skip" Margin="10,0,0,0" Padding="20 0 20 0" hc:BorderElement.CornerRadius="8"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <ContentControl Content="{Binding Navigation.CurrentView}" Visibility="{Binding HasUpdate, Converter={StaticResource CustomBooleanToVisibilityConverter}}"/>
     </Grid>
 </Window>
