@@ -60,6 +60,6 @@
             </Border>
         </Grid>
         
-        <ContentControl Content="{Binding Navigation.CurrentView}" Visibility="{Binding HasUpdate, Converter={StaticResource CustomBooleanToVisibilityConverter}}"/>
+        <ContentControl x:Name="MainContent" Content="{Binding Navigation.CurrentView}" Visibility="{Binding HasUpdate, Converter={StaticResource CustomBooleanToVisibilityConverter}}"/>
     </Grid>
 </Window>

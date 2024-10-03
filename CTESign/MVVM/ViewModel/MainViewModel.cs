@@ -30,18 +30,17 @@ namespace CTESign.MVVM.ViewModel
             get { return _hasUpdate; }
             set { _hasUpdate = value; OnPropertyChanged(); }
         }
-
+        public GlobalViewModel GlobalViewModel { get; } = GlobalViewModel.Instance;
 
         public RelayCommand UpdateSoftwareCommand { get; set; }
         public RelayCommand SkipUpdateCommand { get; set; }
-
         public MainViewModel(INavigationService navService)
         {
             HasUpdate = false;
             Navigation = navService;
-            Navigation.NavigateTo<AFKViewModel>();
             CreateVersionFile();
 
+            Navigation.NavigateTo<AFKViewModel>();
             UpdateSoftwareCommand = new RelayCommand(o =>
             {
                 var updaterPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CTEUpdater.exe");
@@ -70,6 +69,8 @@ namespace CTESign.MVVM.ViewModel
 
             CheckUpdate();
         }
+
+       
 
         async void CheckUpdate()
         {

@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:CTESign.MVVM.ViewModel"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance vm:AdminAuthViewModel}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -32,18 +32,18 @@
         <!-- Username Input -->
         <StackPanel Grid.Row="1"  Margin="0 5 0 5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Username" FontSize="16" Margin="0,10,0,5" />
-            <hc:TextBox hc:InfoElement.Placeholder="Enter username" Width="300" Height="40" Padding="10" />
+            <hc:TextBox Text="{Binding UsernameTxt}" hc:InfoElement.Placeholder="Enter username" Width="300" Height="40" Padding="10" />
         </StackPanel>
 
         <!-- Password Input -->
         <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Password" FontSize="16" Margin="0,10,0,5"/>
-            <hc:PasswordBox Width="300" hc:InfoElement.Placeholder="Enter password" Height="40" Padding="10" />
+            <hc:PasswordBox UnsafePassword="{Binding Passwordtxt}" IsSafeEnabled="False" Width="300" hc:InfoElement.Placeholder="Enter password" Height="40" Padding="10" />
         </StackPanel>
 
         <!-- Login Button -->
         <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
-            <Button Width="300" Height="45" Content="Login" Cursor="Hand" Style="{StaticResource ButtonDanger}" />
+            <Button Command="{Binding LoginCommand}" Width="300" Height="45" Content="Login" Cursor="Hand" Style="{StaticResource ButtonDanger}" />
         </StackPanel>
 
         <!-- Optional Message or Error Notification -->

@@ -34,8 +34,9 @@ namespace CTESign.MVVM.View
         {
             viewModel = (AFKViewModel) this.DataContext;
             var window = Window.GetWindow(this);
-            // uncomment this one.
-            window.KeyDown += HandleKeyPress;
+
+            if (window!= null)
+                window.KeyDown += HandleKeyPress;
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)

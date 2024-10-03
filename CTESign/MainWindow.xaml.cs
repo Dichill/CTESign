@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using CTESign.MVVM.ViewModel;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,6 +18,7 @@ namespace CTESign
     /// </summary>
     public partial class MainWindow : Window
     {
+        public GlobalViewModel GlobalViewModel { get; } = GlobalViewModel.Instance;
         public MainWindow()
         {
             InitializeComponent();

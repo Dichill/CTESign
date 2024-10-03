@@ -63,11 +63,12 @@ namespace CTESign
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
         }
-        public void ShowAdminWindow()
+        public async void ShowAdminWindow()
         {
             var adminWindow = _serviceProvider.GetRequiredService<AdminWindow>();
             adminWindow.Show();
             MainWindow.Close();
+            
         }
     }
 }

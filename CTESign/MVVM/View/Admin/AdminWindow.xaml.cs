@@ -21,6 +21,8 @@ namespace CTESign.MVVM.View.Admin
     /// </summary>
     public partial class AdminWindow : Window
     {
+        public GlobalViewModel GlobalViewModel { get; } = GlobalViewModel.Instance;
+
         public AdminWindow()
         {
             InitializeComponent();
@@ -29,6 +31,8 @@ namespace CTESign.MVVM.View.Admin
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // Save Admin Configuration and Open the App Again
+
+
             var currentExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
             Process.Start(currentExecutablePath);
             Application.Current.Shutdown();
