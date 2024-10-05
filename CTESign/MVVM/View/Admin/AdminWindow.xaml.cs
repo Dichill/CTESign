@@ -30,6 +30,7 @@ namespace CTESign.MVVM.View.Admin
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            GlobalViewModel.InAdminMode = false;
             // Save Admin Configuration and Open the App Again
 
 

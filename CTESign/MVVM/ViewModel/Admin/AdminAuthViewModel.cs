@@ -59,6 +59,7 @@ namespace CTESign.MVVM.ViewModel
 					return;
 				}
 
+				GlobalViewModel.InAdminMode = true;
 				Navigation.NavigateTo<AdminDashboardViewModel>();
 			}, canExecute => true);
 		}

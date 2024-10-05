@@ -11,8 +11,16 @@ namespace CTESign.MVVM.ViewModel
     {
         public static GlobalViewModel Instance { get; } = new GlobalViewModel();
 
-		private bool _isConfiged;
+		private bool _inAdminmode;
 
+		public bool InAdminMode
+		{
+			get { return _inAdminmode; }
+			set { _inAdminmode = value; OnPropertyChanged(); }
+		}
+
+
+		private bool _isConfiged;
 		public bool IsConfiged
 		{
 			get { return _isConfiged; }

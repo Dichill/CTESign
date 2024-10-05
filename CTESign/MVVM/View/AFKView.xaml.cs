@@ -24,6 +24,7 @@ namespace CTESign.MVVM.View
     public partial class AFKView : UserControl
     {
         private AFKViewModel viewModel;
+        public GlobalViewModel GlobalViewModel { get; } = GlobalViewModel.Instance;
 
         public AFKView()
         {
@@ -32,11 +33,17 @@ namespace CTESign.MVVM.View
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            viewModel = (AFKViewModel) this.DataContext;
+            
             var window = Window.GetWindow(this);
 
-            if (window!= null)
+            if (window != null && !GlobalViewModel.InAdminMode)
+            {
+                viewModel = (AFKViewModel)this.DataContext;
                 window.KeyDown += HandleKeyPress;
+            }
+            else
+                viewModel = null;
+
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
