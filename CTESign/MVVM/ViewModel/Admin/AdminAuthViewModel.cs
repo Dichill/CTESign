@@ -11,8 +11,9 @@ namespace CTESign.MVVM.ViewModel
 {
     public class AdminAuthViewModel : Core.ViewModel
     {
-		// this will be hardcoded for now
-		private string? _usernameTxt;
+
+        // this will be hardcoded for now
+        private string? _usernameTxt;
 
 		public string? UsernameTxt
 		{
@@ -43,10 +44,10 @@ namespace CTESign.MVVM.ViewModel
 		{
 			Navigation = navService;
 
-			LoginCommand = new RelayCommand(o =>
+            LoginCommand = new RelayCommand(async o =>
 			{
 
-				if (UsernameTxt == "mesa" && Passwordtxt == "fahatgae")
+				if (UsernameTxt == "mesa" && Passwordtxt == "mesa123")
 				{
 					GlobalViewModel.CurrentAdmin = "MESA";
 
@@ -58,6 +59,8 @@ namespace CTESign.MVVM.ViewModel
 					MessageBox.Show("Invalid username and password. Only admins can login!", "Dash Software", MessageBoxButton.OK, MessageBoxImage.Warning);
 					return;
 				}
+
+				await GlobalViewModel.ConfigService.UpdateConfigAsync(department: GlobalViewModel.CurrentAdmin);
 
 				GlobalViewModel.InAdminMode = true;
 				Navigation.NavigateTo<AdminDashboardViewModel>();

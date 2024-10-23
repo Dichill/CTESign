@@ -77,7 +77,7 @@ namespace CTESign.MVVM.ViewModel
                         IsOther = true;
                         IsWorkshop = false;
                         break;
-                    case "Job Search":
+                    case "Workshop":
                         IsWorkshop = true;
                         IsOther = false;
                         break;
@@ -175,6 +175,7 @@ namespace CTESign.MVVM.ViewModel
             Navigation = navService;
 
             IsOther = false;
+            IsWorkshop = false;
 
 			SubmitCommand = new RelayCommand(async o =>
 			{

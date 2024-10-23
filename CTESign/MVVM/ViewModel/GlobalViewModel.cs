@@ -1,4 +1,5 @@
 ﻿using CTESign.Core;
+using CTESign.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,17 @@ namespace CTESign.MVVM.ViewModel
     {
         public static GlobalViewModel Instance { get; } = new GlobalViewModel();
 
-		private bool _inAdminmode;
+        public JsonConfigService? ConfigService { get; set; }
 
+        private string? _department;
+
+		public string? Department
+		{
+			get { return _department; }
+			set { _department = value; OnPropertyChanged(); }
+		}
+
+		private bool _inAdminmode;
 		public bool InAdminMode
 		{
 			get { return _inAdminmode; }

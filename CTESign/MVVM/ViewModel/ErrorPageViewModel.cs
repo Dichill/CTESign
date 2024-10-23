@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CTESign.MVVM.ViewModel
 {
-    public class SubmittedViewModel : Core.ViewModel
+    public class ErrorPageViewModel : Core.ViewModel
     {
         private INavigationService _navigation;
 
@@ -20,7 +20,8 @@ namespace CTESign.MVVM.ViewModel
 
         public RelayCommand SubmitOnLoaded { get; set; }
 
-        public SubmittedViewModel(INavigationService navService) {
+        public ErrorPageViewModel(INavigationService navService)
+        {
             Navigation = navService;
 
             SubmitOnLoaded = new RelayCommand(async o =>
@@ -32,7 +33,7 @@ namespace CTESign.MVVM.ViewModel
 
         public async Task NavigateToAnotherViewModelAsync()
         {
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(TimeSpan.FromSeconds(2.5));
             Navigation.NavigateTo<AFKViewModel>();
         }
     }

@@ -264,6 +264,7 @@ namespace CTESign.MVVM.ViewModel
                     
                     IsOther = false;
                     IsJobSearch = false;
+                    hasSubmitted = false;
 
                     JobSearchTxt = "";
                     OtherTxt = "";

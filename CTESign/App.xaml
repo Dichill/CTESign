@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:CTESign.MVVM.ViewModel"
              xmlns:advm="clr-namespace:CTESign.MVVM.ViewModel"
              xmlns:view="clr-namespace:CTESign.MVVM.View"
+             xmlns:pages="clr-namespace:CTESign.MVVM.View.Pages"
              xmlns:adview="clr-namespace:CTESign.MVVM.View.Admin"
              xmlns:hc="https://handyorg.github.io/handycontrol">
     <Application.Resources>
@@ -20,6 +21,15 @@
             
             <DataTemplate DataType="{x:Type vm:SubmittedViewModel}">
                 <view:SubmittedView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:MesaSignInViewModel}">
+                <view:MesaSignInView/>
+            </DataTemplate>
+            
+            <!-- Pages Route -->
+            <DataTemplate DataType="{x:Type vm:ErrorPageViewModel}">
+                <pages:ErrorView/>
             </DataTemplate>
             
             <!-- Admin Routes -->

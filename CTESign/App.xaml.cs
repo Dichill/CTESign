@@ -34,6 +34,9 @@ namespace CTESign
             services.AddSingleton<SubmittedViewModel>();
             services.AddSingleton<GlobalViewModel>();
 
+            // Pages
+            services.AddSingleton<ErrorPageViewModel>();
+
             // Admin Services
             services.AddSingleton<AdminWindow>(provider => new AdminWindow
             {

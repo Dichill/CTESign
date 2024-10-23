@@ -10,13 +10,13 @@ using System.Net.Http;
 using System.Diagnostics;
 using System.Windows;
 using System.IO;
+using CTESign.MVVM.Model;
 
 namespace CTESign.MVVM.ViewModel
 {
     public class MainViewModel : Core.ViewModel
     {
         private INavigationService _navigation;
-
         public INavigationService Navigation
         {
             get { return _navigation; }
@@ -38,6 +38,9 @@ namespace CTESign.MVVM.ViewModel
         {
             HasUpdate = false;
             Navigation = navService;
+            var filePath = "config.json";
+            GlobalViewModel.ConfigService = new JsonConfigService(filePath);
+
             CreateVersionFile();
 
             Navigation.NavigateTo<AFKViewModel>();
@@ -68,9 +71,49 @@ namespace CTESign.MVVM.ViewModel
             }, canExecute => true);
 
             CheckUpdate();
+            FetchConfig();
         }
 
-       
+
+        async void GetConfigGlobal()
+        {
+            var config = await GlobalViewModel.ConfigService.LoadConfigAsync();
+
+            GlobalViewModel.LogoImage = config.AFKLogoPath;
+            GlobalViewModel.LogoSize = config.AFKLogoSize;
+            GlobalViewModel.AfkTitle = config.AFKSignageText;
+
+            if (config.Department == "")
+            {
+                GlobalViewModel.Department = null;
+            } else
+            {
+                GlobalViewModel.Department = config.Department;
+            }
+
+        }
+        async void FetchConfig()
+        {
+            if (GlobalViewModel.ConfigService.ConfigExists())
+            {
+                GetConfigGlobal();
+            } else
+            {
+                var config = new ConfigModel
+                {
+                    Department = "",
+                    IssueDate = DateTime.Now,
+                    AFKLogoPath = "/Assets/logo.png",
+                    AFKLogoSize = 400,
+                    AFKSignageText = "CONFIGURE AT ADMIN PANEL",
+                };
+
+                await GlobalViewModel.ConfigService.SaveConfigAsync(config);
+
+                // Load data once saved
+                GetConfigGlobal();
+            }
+        }
 
         async void CheckUpdate()
         {
