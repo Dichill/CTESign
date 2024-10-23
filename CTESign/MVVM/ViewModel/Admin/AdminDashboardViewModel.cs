@@ -46,8 +46,6 @@ namespace CTESign.MVVM.ViewModel
             get { return _afkLogoSize; }
             set { _afkLogoSize = value; OnPropertyChanged(); }
         }
-
-
         public RelayCommand SaveChangesCommand { get; set; }
 
         public AdminDashboardViewModel()

@@ -164,6 +164,8 @@ namespace CTESign.MVVM.ViewModel
                     "Tutoring",
                     "Workshop",
                     "Mesa Event",
+                    "Counseling",
+                    "MESA Appointment",
                     "Other",
                 };
             } 
@@ -200,6 +202,10 @@ namespace CTESign.MVVM.ViewModel
                         "answer1": "{STUDENT_NUMBER}"
                     },
                     {
+                        "questionId": "rdebe27f6359d4f20ad5f3befeca3f8cc",
+                        "answer1": "{EMAIL}"
+                    },
+                    {
                         "questionId": "ra13f4319b2224d8d8367895be24eb012",
                         "answer1": "{PURPOSE}"
                     },
@@ -209,6 +215,9 @@ namespace CTESign.MVVM.ViewModel
                 answers = answers.Replace("{FIRST_NAME}", FirstName)
                                  .Replace("{LAST_NAME}", LastName)
                                  .Replace("{STUDENT_NUMBER}", StudentNumber);
+
+                if (EmailAddress == "")
+                    answers.Replace("{EMAIL}", EmailAddress);
 
                 if (IsOther)
                     answers = answers.Replace("{PURPOSE}", "Other - " + OtherTxt);

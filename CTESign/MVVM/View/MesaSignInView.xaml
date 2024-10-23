@@ -195,6 +195,17 @@
                                 </hc:TextBox.Text>
                             </hc:TextBox>
 
+                            <hc:TextBox hc:InfoElement.Placeholder="Please Enter Email Address (Optional)"
+                                hc:InfoElement.Title="Email (Optional)"
+                                hc:InfoElement.Necessary="True"
+                                FontSize="20"
+                                Padding="5"
+                                Margin="0 25 0 0">  
+                                <hc:TextBox.Text>
+                                    <Binding Path="EmailAddress" UpdateSourceTrigger="PropertyChanged"/>
+                                </hc:TextBox.Text>
+                            </hc:TextBox>
+
                             <hc:TextBox hc:InfoElement.Placeholder="Please Enter Student ID"
                                     hc:InfoElement.Title="Student Number"
                                     hc:InfoElement.Necessary="True"
