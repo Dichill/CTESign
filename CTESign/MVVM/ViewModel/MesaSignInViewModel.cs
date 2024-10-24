@@ -216,8 +216,10 @@ namespace CTESign.MVVM.ViewModel
                                  .Replace("{LAST_NAME}", LastName)
                                  .Replace("{STUDENT_NUMBER}", StudentNumber);
 
-                if (EmailAddress == "")
-                    answers.Replace("{EMAIL}", EmailAddress);
+                if (EmailAddress != "")
+                    answers = answers.Replace("{EMAIL}", EmailAddress);
+                else
+                    answers = answers.Replace("{EMAIL}", "n/a");
 
                 if (IsOther)
                     answers = answers.Replace("{PURPOSE}", "Other - " + OtherTxt);
@@ -271,6 +273,7 @@ namespace CTESign.MVVM.ViewModel
                     
                     IsOther = false;
                     IsWorkshop = false;
+                    hasSubmitted = false;
 
                     WorkshopTxt = "";
                     OtherTxt = "";

@@ -195,9 +195,9 @@
                                 </hc:TextBox.Text>
                             </hc:TextBox>
 
-                            <hc:TextBox hc:InfoElement.Placeholder="Please Enter Email Address (Optional)"
-                                hc:InfoElement.Title="Email (Optional)"
-                                hc:InfoElement.Necessary="True"
+                            <hc:TextBox hc:InfoElement.Placeholder="Please Enter Email Address"
+                                hc:InfoElement.Title="Email"
+                                hc:InfoElement.Necessary="False"
                                 FontSize="20"
                                 Padding="5"
                                 Margin="0 25 0 0">  
